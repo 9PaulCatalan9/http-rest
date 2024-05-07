@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 router.use((req,res,next)=>{
-  if(req.headers.authorization && req.headers.authorization==="123456"){
+  if(req.headers.authorization && req.headers.authorization==="9MyAPIkey9"){
     next();
   }else{
     res.json("No se encontro autorizacion!")
