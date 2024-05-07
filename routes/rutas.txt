@@ -1,0 +1,2 @@
+Ayuda a definir la ruta o path a seguir en base a los end points
+que vallamos creando
