@@ -20,13 +20,12 @@ let tasks = [];
       
 
 
-    if(req.body&&req.body.name && req.body.description && req.body.dueDate){
+    if(req.body&&req.body.nombre && req.body.descripcion && req.body.fechaEntrega){
         req.body.id=generarId();
         tasks.push(req.body);
-        res.json(tasks);
-
+        res.status(200).json(tasks);
     }else{
-        res.status(400).json({})
+        res.status(400).json({error:"No se estan enviando los parametros..."})
 } 
 })
 
