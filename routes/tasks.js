@@ -19,7 +19,6 @@ let tasks = [];
       };
       
 
-
     if(req.body&&req.body.nombre && req.body.descripcion && req.body.fechaEntrega){
         req.body.id=generarId();
         tasks.push(req.body);
@@ -29,11 +28,13 @@ let tasks = [];
 } 
 })
 
-    router.delete("/removeTask/:id", function(req,res,next){
-        if(req.params && req.params.id){
+
+ router.delete("/removeTask/:id", function(req,res,next){
+       
+    if(req.params && req.params.id){
             let id = parseInt(req.params.id)
             tasks = tasks.filter(task=>task.id!==id)
-            res.json(tasks)
+            res.status(200).json(tasks)
         }else{
             res.status(400).json({})       
      }

@@ -19,15 +19,15 @@ router.post("/addGoal",function(req,res,next){
       };
 
 
-    if(req.body&&req.body.name && req.body.description && req.body.dueDate){
+    if(req.body&&req.body.nombre && req.body.descripcion && req.body.fechaEntrega){
         req.body.id=generarId();
         goals.push(req.body)
-        res.json(goals)
+        res.status(200).json(goals)
     }else{
-        res.status(400).json({})
-    }
-       
+        res.status(400).json({error:"No se estan enviando los parametros..."})
+    }  
 })
+
 
 
 //Para eliminar metas
@@ -36,7 +36,7 @@ router.post("/addGoal",function(req,res,next){
     if(req.params && req.params.id){
         let id = parseInt(req.params.id)
         goals=goals.filter(goal=>goal.id!==id)
-        res.json(goals)
+        res.status(200).json(goals)
     }else{
         res.status(400).json({})
     }
