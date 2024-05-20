@@ -11,6 +11,63 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var usersTasks = require('./routes/tasks')
 var usersGoals = require('./routes/goals')
+const mysql = require('mysql')
+var connection = mysql.createConnection({
+  host:"localhost",
+  user:"root",
+  database:"todolistdb"
+});
+
+connection.connect(function(err){
+  if(err){
+    console.err("error connecting "+err.stack);
+    return;
+  }
+  console.log("Connected as id "+ connection.threadId);
+})
+
+let queryCreateBd = 'CREATE DATABASE IF NOT EXISTS todolistdb'
+let queryCreateTableMetas = 'CREATE TABLE IF NOT EXISTS `metas` ( \
+  `id` int(11) NOT NULL auto_increment, \   \
+  `nombre` varchar(250) NOT NULL default \'\', \
+  `descripcion` varchar(250) NOT NULL default \'\', \
+  `fechaEntrega` varchar(250) NOT NULL default \'\', \
+  PRIMARY KEY (`id`) \
+);'
+let queryCreateTableTareas = 'CREATE TABLE IF NOT EXISTS `tareas` ( \
+  `id` int(11) NOT NULL auto_increment, \   \
+  `nombre` varchar(250) NOT NULL default \'\', \
+  `descripcion` varchar(250) NOT NULL default \'\', \
+  `fechaEntrega` varchar(250) NOT NULL default \'\', \
+  PRIMARY KEY (`id`) \
+);'
+
+connection.query(queryCreateBd,function(err, results, filds){
+  if(err){
+    console.log(err);
+    return;
+  }else{
+    console.log(results);
+  }
+})
+connection.query(queryCreateTableMetas,function(err, results, filds){
+  if(err){
+    console.log(err);
+    return;
+  }else{
+    console.log(results);
+  }
+})
+connection.query(queryCreateTableTareas,function(err, results, filds){
+  if(err){
+    console.log(err);
+    return;
+  }else{
+    console.log(results);
+  }
+})
+
+connection.destroy();
 
 var app = express();
 
