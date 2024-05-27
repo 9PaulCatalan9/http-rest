@@ -11,22 +11,25 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var usersTasks = require('./routes/tasks')
 var usersGoals = require('./routes/goals')
-const mysql = require('mysql')
+const mysql = require('mysql2')
 var connection = mysql.createConnection({
   host:"localhost",
   user:"root",
-  database:"todolistdb"
+  database:"todolistdb",
+  password:"galileo",
+  port:"3307"
+
 });
 
 connection.connect(function(err){
   if(err){
-    console.err("error connecting "+err.stack);
+    console.error("error connecting "+err.stack);
     return;
   }
   console.log("Connected as id "+ connection.threadId);
 })
 
-let queryCreateBd = 'CREATE DATABASE IF NOT EXISTS todolistdb'
+let queryCreateBd = 'CREATE DATABASE IF NOT EXISTS todolistdb';
 let queryCreateTableMetas = 'CREATE TABLE IF NOT EXISTS `metas` ( \
   `id` int(11) NOT NULL auto_increment, \   \
   `nombre` varchar(250) NOT NULL default \'\', \
@@ -34,6 +37,7 @@ let queryCreateTableMetas = 'CREATE TABLE IF NOT EXISTS `metas` ( \
   `fechaEntrega` varchar(250) NOT NULL default \'\', \
   PRIMARY KEY (`id`) \
 );'
+
 let queryCreateTableTareas = 'CREATE TABLE IF NOT EXISTS `tareas` ( \
   `id` int(11) NOT NULL auto_increment, \   \
   `nombre` varchar(250) NOT NULL default \'\', \
@@ -50,6 +54,7 @@ connection.query(queryCreateBd,function(err, results, filds){
     console.log(results);
   }
 })
+
 connection.query(queryCreateTableMetas,function(err, results, filds){
   if(err){
     console.log(err);
@@ -58,6 +63,7 @@ connection.query(queryCreateTableMetas,function(err, results, filds){
     console.log(results);
   }
 })
+
 connection.query(queryCreateTableTareas,function(err, results, filds){
   if(err){
     console.log(err);

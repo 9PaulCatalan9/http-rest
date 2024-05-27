@@ -1,15 +1,17 @@
 var express = require("express");
 var router =  express.Router();
-var mysql = require ("mysql");
+var mysql = require ("mysql2");
 
 var connection = mysql.createConnection({
     host:"localhost",
     user:"root",
-    database:"todolistdb"
+    database:"todolistdb",
+    password:"galileo",
+    port:"3307"
   });
   connection.connect(function(err){
     if(err){
-      console.err("error connecting "+err.stack);
+      console.error("error connecting "+err.stack);
       return;
     }
     console.log("Connected as id "+ connection.threadId);
