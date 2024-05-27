@@ -1,30 +1,39 @@
-PROYECTO To Do List
+BACKEND de To Do List - README
 
-Se necesita crear una aplicación web para llevar el 
-control de Tareas y Metas personales (To do List),esto con el
-objetivo de tener un lugar donde nuestras tareas para alcanzar
-ciertas metas queden reflejadas por escrito, además de poder 
-agregar una fecha límite para cumplirla. 
+Este proyecto es una API backend para una aplicacion de
+control de tareas y metas. La api realiza operaciones
+CRUD para las metas como para las tareas.
 
-INSTRUCCIONES:
+Ee necesario tener instalado lo siguiente:
+        - NODE JS
+        - Workbench o Xampp
+        - POSTMAN
+
+INSTALACION:
+
+Clonar el repositorio
+
+        git clone https://github.com/9PaulCatalan9/http-rest.git
+        cd http-rest
+
+Instalacion de dependencias:
+
+        npm install
 
 
-Asegurate de tener instalado docker y git en tu computadora.
+La conexion a la base de datos esta configurada de la siguiente
+forma:
 
-Paso 1: clona el repositorio en tu maquina local. utilizando:
+        var connection = mysql.createConnection({
+                host: "localhost",
+                user: "root",
+                database: "todolistdb",
+                password: "galileo",
+                port: "3307"
+        });
 
-        git clone https://github.com/9PaulCatalan9/maqueta-html.git
-        cd maqueta-html
 
-Paso 2:  Crear una imagen de docker para la aplicacion con el
-siguiente comando
 
-        docker build -t todo-list-image .
+Para iniciar:
 
-Paso 3: Ejecutar la aplicacion con el siguiente comando
-
-        docker run -d -p 80:80 todo-list-image
-
-Paso 4: Abrir el navegador y ir a:
-
-        http://localhost:4000
+        npm start
